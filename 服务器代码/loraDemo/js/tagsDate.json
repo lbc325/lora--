@@ -1,0 +1,86 @@
+{
+  "code":0,
+  "data":[
+  {
+    "EPC": "E2021001",
+    "TimeStamp": "12:23:45",
+    "RSSI": -23,
+    "SNR": 1,
+    "Phase": 123,
+    "ReadCount": 345,
+    "Frequency": 960000000
+  },
+  {
+    "EPC": "E2021002",
+    "TimeStamp": "12:23:46",
+    "RSSI": -57,
+    "SNR": 2,
+    "Phase": 67,
+    "ReadCount": 331,
+    "Frequency": 960000000
+  },
+    {
+      "EPC": "E2021004",
+      "TimeStamp": "12:23:47",
+      "RSSI": -59,
+      "SNR": -2,
+      "Phase": 67,
+      "ReadCount": 258,
+      "Frequency": 960000000
+    },
+    {
+      "EPC": "E2021003",
+      "TimeStamp": "12:23:48",
+      "RSSI": -53,
+      "SNR": 4,
+      "Phase": 117,
+      "ReadCount": 312,
+      "Frequency": 960000000
+    },
+    {
+      "EPC": "E2021005",
+      "TimeStamp": "12:23:49",
+      "RSSI": -67,
+      "SNR": -1,
+      "Phase": 45,
+      "ReadCount": 231,
+      "Frequency": 960000000
+    },
+    {
+      "EPC": "E2021006",
+      "TimeStamp": "12:23:50",
+      "RSSI": -57,
+      "SNR": 0,
+      "Phase": 34,
+      "ReadCount": 303,
+      "Frequency": 960000000
+    },
+    {
+      "EPC": "E2021011",
+      "TimeStamp": "12:23:51",
+      "RSSI": -43,
+      "SNR": -2,
+      "Phase": 154,
+      "ReadCount": 387,
+      "Frequency": 960000000
+    },
+    {
+      "EPC": "E2021008",
+      "TimeStamp": "12:23:52",
+      "RSSI": -57,
+      "SNR": 4,
+      "Phase": 123,
+      "ReadCount": 298,
+      "Frequency": 960000000
+    },
+    {
+      "EPC": "E2021009",
+      "TimeStamp": "12:23:53",
+      "RSSI": -73,
+      "SNR": -3,
+      "Phase": 160,
+      "ReadCount": 400,
+      "Frequency": 960000000
+    }
+]
+}

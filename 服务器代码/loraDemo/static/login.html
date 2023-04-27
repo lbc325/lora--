@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="../layui/css/login.css">
+</head>
+<body>
+
+<!--登录模块-->
+<div class="layui-bg-black" style="height: 66px ;width:1920px;display:table-cell;vertical-align:middle;">
+    <span style="text-align: center ;font-size: 40px;color: grey">LoRa远程有源RFID上位机系统</span>
+</div>
+<div class="login-box">
+    <div class="head">
+        <!--<div class="ref-login">登录</div>-->
+        <div class="ref-login"><a href="" style="text-decoration:none;">登录</a></div>
+        <div class="ref-reg"><a href="" style="text-decoration:none;">注册</a></div>
+    </div>
+
+    <form action="#" id="myform" method="get">
+        <div class="mid">
+            <div class="mid-input">
+                <div class="mid-text">账号</div>
+                <input type="text" name="tel" id="number" placeholder="请输入账号" form="myform">
+            </div>
+            <div class="mid-input">
+                <div class="mid-text">验证码</div>
+                <input type="text" name="vcode" placeholder="请输入短信验证码" form="myform">
+                <button class="btn" onclick="getCode()">获取验证码</button>
+            </div>
+            <div class="mid-input">
+                <div class="mid-text">昵称</div>
+                <input type="text" name="nickname" placeholder="请输入您的昵称" form="myform">
+                <div class="note">您在社区的名字</div>
+            </div>
+            <div class="mid-input"><div class="mid-text">密码</div>
+                <input type="password" name="pwd" id="pwd" placeholder="请输入密码" form="myform">
+                <div class="note">6-16个字符</div>
+            </div>
+            <div class="mid-input">
+                <div class="mid-text">确认密码</div>
+                <input type="password" name="pwd2" id="pwd2" placeholder="请再次输入密码" form="myform">
+            </div>
+            <input type="checkbox" value="同意用户服务条款" form="myform">同意用户服务条款
+            <div class="btn-reg">
+                <button class="btn" onclick="verify1()"  form="myform">立即登录</button>
+                <input type="reset" value="重置">
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script src="../js/login.js"></script>
+
+</body>
+</html>

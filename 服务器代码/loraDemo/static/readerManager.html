@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+    <head>
+        <meta charset="utf-8">
+        <title>读写器管理</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="../layui/css/layui.css" />
+        <script src="../js/jquery-3.6.0.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+
+    <body>
+        <div class="layui-bg-black" style="height: 66px ;width:2120px;display:table-cell;vertical-align:middle;">
+            <span style="text-align: center ;font-size: 28px">LoRa远程有源RFID上位机系统</span>
+        </div>
+        <div>
+            <!--主体区域-->
+            <div>
+                <div class="layui-row layui-col-space5">
+                    <div class="layui-col-lg12 ">
+                        <div  class="layui-bg-green" style="font-size: large;border: thick #000000;" >系统日志</div>
+                        <table id="logTable" lay-filter="logTable"></table>
+                    </div>
+
+                </div>
+                <div class="layui-row layui-col-space1">
+                    <div class="layui-col-lg4">
+                        <div>
+                            <div class="layui-bg-green">
+                                <span style="font-size: large;border: thick #000000;">功能设置</span>
+                            </div>
+                            <div style="margin: 20px">
+                                <div>
+                                    <fieldset class="layui-elem-field layui-field-title">
+                                        <legend>盘点单个标签</legend>
+                                    </fieldset>
+                                    <label style="width: 200px;margin-left: 25px">要盘点的单个标签ID</label>
+                                    <div class="layui-input-inline">
+                                        <input style="width: 250px" value="" class="layui-input layui-input-inline" name="tagId" id="tagId" placeholder="请输入标签ID" lay-verify="required" autocomplete="off" type="text" />
+                                    </div>
+                                </div>
+                                <button type="button" class="layui-btn " style="background-color: cornflowerblue;margin: 30px" onclick="SingleInventory()">盘点单个标签</button>
+                                <button type="button" class="layui-btn layui-btn-danger" style="margin: 30px" onclick="StopInventory()">停止盘点</button>
+                            </div>
+
+                            <div style="margin: 20px">
+                                <fieldset class="layui-elem-field layui-field-title">
+                                    <legend>盘点多个标签</legend>
+                                </fieldset>
+                                <button type="button" class="layui-btn " style="background-color: cornflowerblue;margin: 30px" onclick="MultiInventory()">盘点多个标签</button>
+                                <button type="button" class="layui-btn layui-btn-danger" style="margin: 30px;" onclick="StopInventory()">停止盘点</button>
+                                <button type="button" class="layui-btn layui-btn-warm" onclick="ClearResults()">清除盘点结果</button>
+                            </div>
+                            <div style="margin: 20px">
+                                <fieldset class="layui-elem-field layui-field-title">
+                                    <legend>系统日志</legend>
+                                </fieldset>
+                                <button type="button" id="showLogBtn" class="layui-btn" style="background-color: cornflowerblue;margin: 30px" >显示系统日志</button>
+                                <button type="button" class="layui-btn layui-btn-danger" style="margin: 30px" onclick="ClearLogs()">清除系统日志</button>
+                            </div>
+                            <div style="margin: 30px">
+                                <button type="button" class="layui-btn" style="background-color: dimgray;width: 500px" onclick="logout()">退出系统</button>
+                            </div>
+
+                            <div id="readTags" class="layui-form" style="">
+<!--                                <form id="readTagsForm" layui-filter="readTagsForm" class="layui-form layui-form-pane" method="post" style="margin-top: 20px;border-color: rebeccapurple;">-->
+<!--                                    &lt;!&ndash;									<div class="layui-form-item">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;										<label class="layui-form-label">波特率</label>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;										<div class="layui-input-block">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;											<input type="radio" name="Band" value="1" title="115200" checked>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;											<input type="radio" name="Band" value="2" title="9600" >&ndash;&gt;-->
+<!--                                    &lt;!&ndash;										</div>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;									</div>&ndash;&gt;-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">同步字长度</label>-->
+<!--                                        <div class="layui-input-inline">-->
+<!--                                            <input style="width: 215px" value="7" class="layui-input layui-input-inline" name="moveSpeed" id="moveSpeed" placeholder="请输入 6-65535之间的整数" lay-verify="required" autocomplete="off" type="text" />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">发射功率</label>-->
+<!--                                        <div class="layui-inline">-->
+<!--                                            <select id="t_power" name="t_power" lay-verify="" lay-search>-->
+<!--                                                    <option value=16>16</option>-->
+<!--                                                    <option value=17>17</option>-->
+<!--                                                    <option value=18 >18</option>-->
+<!--                                                    <option value=19>19</option>-->
+<!--                                                    <option value=20>20</option>-->
+<!--                                                    <option value=21>21</option>-->
+<!--                                                    <option value=22 selected>22</option>-->
+<!--                                                </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">带宽</label>-->
+<!--                                        <div class="layui-inline">-->
+<!--                                            <select name="bandWidth" lay-verify="" lay-search>-->
+<!--                                                    <option value="">直接选择或搜索选择</option>-->
+<!--                                                    <option value="1">500</option>-->
+<!--                                                    <option value="2">250</option>-->
+<!--                                                    <option value="3">125</option>-->
+<!--                                                    <option value="4" selected>62.5</option>-->
+<!--                                                    <option value="5">41.7</option>-->
+<!--                                                    <option value="6">31.25</option>-->
+<!--                                                    <option value="7">20.8</option>-->
+<!--                                                    <option value="8">15.6</option>-->
+<!--                                                    <option value="9">10.4</option>-->
+<!--                                                    <option value="10">7.8</option>-->
+<!--                                                </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">扩频因子</label>-->
+<!--                                        <div class="layui-inline">-->
+<!--                                            <select name="spreading_factor" lay-verify="" lay-search>-->
+<!--                                                    <option value=6>6</option>-->
+<!--                                                    <option value=7>7</option>-->
+<!--                                                    <option value=8>8</option>-->
+<!--                                                    <option value=9>9</option>-->
+<!--                                                    <option value=10 selected>10</option>-->
+<!--                                                    <option value=11>11</option>-->
+<!--                                                    <option value=12>12</option>-->
+<!--                                                </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">前置纠错码</label>-->
+<!--                                        <div class="layui-inline">-->
+<!--                                            <select name="error_correction_code" lay-verify="" lay-search>-->
+<!--                                                    <option value=1>4/5</option>-->
+<!--                                                    <option value=2 selected>4/6</option>-->
+<!--                                                    <option value=3>4/7</option>-->
+<!--                                                    <option value=4>4/8</option>-->
+<!--                                                </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">频率</label>-->
+<!--                                        <div class="layui-inline">-->
+<!--                                            <select name="frequency" lay-verify="" lay-search>-->
+<!--                                                    <option value=470200000>470200000</option>-->
+<!--                                                    <option value=472200000 selected>472200000</option>-->
+<!--                                                    <option value=474200000>474200000</option>-->
+<!--                                                    <option value=476200000>476200000</option>-->
+<!--                                                </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item" style="align-items: center">-->
+<!--                                        <div class="layui-inline" align="center" style="margin-left: 20px">-->
+<!--                                            <button type="button" class="layui-btn" lay-submit lay-filter="configReader">确认</button>-->
+<!--                                            <button type="reset" class="layui-btn layui-btn-danger">重置</button>-->
+<!--                                            <button type="button" class="layui-btn" style="background-color: cornflowerblue;">单次读取</button>-->
+<!--                                            <button type="button" class="layui-btn" style="background-color: cornflowerblue;">连续读取</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-lg8">
+                        <div class="layui-row" >
+                            <div class="layui-bg-green layui-col-lg12">
+                                <span style="font-size: large;border: thick #000000;">盘点结果</span>
+                            </div>
+<!--                            <div class="layui-col-lg2 layui-inline" align="center">-->
+<!--                                <button type="button" class="layui-btn" style="background-color: cornflowerblue;margin-left: 10px">连接</button>-->
+<!--                                <button type="button" class="layui-btn layui-btn-danger" style="margin-left: 10px">断开</button>-->
+<!--                            </div>-->
+                        </div>
+                        <table id="tagResultList" lay-filter="tagResultList"></table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script type="text/html" id="bar">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        </script>
+        <script src="../layui/layui.js "></script>
+        <script src="../js/websocket.js "></script>
+        <script src="../js/readerManager.js "></script>
+    </body>
+
+</html>

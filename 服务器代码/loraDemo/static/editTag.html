@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>修改标签EPC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+  <script src="../layui/layui.js"></script>
+</head>
+<body>
+<div id="editTag" class="layui-form" >
+  <form id="editTagForm" layui-filter="editTagForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">当前ID</label>
+      <div class="layui-input-inline">
+        <input class="layui-input" name="EPC" id="EPC" disabled lay-verify="required" autocomplete="off" type="text"/>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">新ID</label>
+      <div class="layui-input-inline">
+        <input class="layui-input" name="newEPC" id="newEPC" lay-verify="required"  autocomplete="off" type="text"/>
+      </div>
+    </div>
+    <div class="layui-form-item" align="center">
+      <div class="layui-input-block" style="margin-left: 10px" align="center">
+        <button class="layui-btn" id="updateTagSubmit" lay-submit="" lay-filter="updateTagSubmit" >确认</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script src="../js/websocket.js"></script>
+<script src="../js/editTag.js"></script>
+</body>
+</html>
